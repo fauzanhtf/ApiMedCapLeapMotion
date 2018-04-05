@@ -28,6 +28,15 @@ $router->group(['prefix' => 'api/',
 
 });
 
+$router->group(['prefix' => 'api/gerakan/',
+			'namespace' => '\App\Http\Controllers'
+	], function() use ($router)
+{
+	$router->post('/input/{id}',['middleware'=>'auth', 'uses'=>'GerakanController@create_gerakan']);
+	$router->post('/frameinput/{parent}/{id}',['middleware'=>'auth', 'uses'=>'GerakanController@set_frame_gerakan']);
+	$router->get('/getframe/{id_gerakan}/{id}',['middleware'=>'auth', 'uses'=>'GerakanController@get_gerakan']);
+});
+
 
 /*$router->get('/', function () use ($router) {
     return $router->app->version();
